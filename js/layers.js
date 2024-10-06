@@ -27,10 +27,21 @@ addLayer("p", {
     ],
     upgrades: {
         11: {
-            title: "Simple Point Booster",
+            title: "Simple Duplicator",
             description: "Multiply points by 2.",
             cost: new Decimal(1)
-        }
+        },
+        12: {
+            title: "Simple Synergy",
+            description: "Add 0.15 exponent to point gain",
+            cost: new Decimal(2),
+            effect() {
+                return player.points.add(1).pow(0.5)
+            },
+            effectDisplay() {
+                return format(upgradeEffect(this.layer, this.id))+"x"
+            },
+        },
 
     },
     layerShown(){return true}
